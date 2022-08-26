@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    /* min-width: 320px; */
+}
+
+header{
+    height: 20vh;
+    width: 100%;
+    min-width: 320px;
+    border: 2px solid black;
+}
+
+#outer-navigation-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* #title-container{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rebeccapurple;
+    justify-content: space-between;
+} */
+
+/* #logo-title-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 2px solid red;
+    
+} */
+
+#logo-title-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid red;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.logo img{
+    height: 50px;
+    border: 2px solid rebeccapurple;
+    padding: 0.2rem;
+    /* border: 2px solid black; */ 
+
+}
+
+/* .title-header{
+    position: relative;
+    top: -15px;
+} */
+
+.title-header{
+    margin-top: 0.5rem;
+}
+
+
+#main-section{
+    height: 60vh;
+    width: 100%;
+    min-width: 320px;
+    border: 2px solid red;
+    margin: 1rem 0;
+}
+
+#outer-main-container{
+    height: 100%;
+    width: 100%;
+}
+
+.click-count-outer-container{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    background-color: blue;
+    justify-content: flex-end;
+    /* align-items: center; */
+}
+
+#counter-container{
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+}
+
+.timer-button-container{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer-container{
+    margin-bottom: 4rem ;
+}
+
+#timer{
+    border: 2px solid black;
+    padding: 3rem;
+    border-radius: 50%;
+}
+
+#counter-container{
+    font-size: 2rem;
+}
+
+
+@media only screen and (max-width: 768px){
+    /*phone*/
+}
+
+@media only screen and (max-width: 400px){
+    /*small screen*/
+    #outer-navigation-container{
+        justify-content: center;
+    }
+}
+
+
+@media only screen and (min-width: 769px){
+    /*desktop*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    /*phone*/    
+}
+
+
+@media only screen and (min-width: 768px) {
+    /*desktop*/    
+}
