@@ -8,7 +8,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 
 const app = express()
-
+const port = 5000
 
 app.use(express.json())
 // app.use(express.urlencoded({extended:false}))
@@ -75,7 +75,7 @@ app.get('/getClicks',getNumberOfClicks)
 app.use(express.static(path.join(__dirname,'public')))
 
 db.sequelize.sync().then(()=>{
-    app.listen(process.env.PORT,()=>{
+    app.listen(process.env.PORT||5000,()=>{
         console.log(`Listening on port ${process.env.PORT}`)
     })
 })
