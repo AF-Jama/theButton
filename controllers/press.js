@@ -1,12 +1,16 @@
 const db = require('../models')
+const {getUserIpAddresses} = require('../utils/get_ip.js')
+require('dotenv').config()
 
 const pressController = async (req,res,next)=>{
-    const localIpAddress = req.ip; // gets local ip address from request object
+    // const localIpAddress = req.ip; // gets local ip address from request object
 
     const {time} = req.body // destructures request payload
     console.log(`Time number is ${time}`)
     try {
         console.log("1a")
+        const localIpAddress = await getUserIpAddresses(process.env.TOKEN)
+        console.log(`Ip addresses is ${localIpAddress}`)
         await db.ipTable.create({ipAddress:localIpAddress,time:time}) // commits
         console.log("2a")
         reset()
@@ -22,18 +26,24 @@ const pressController = async (req,res,next)=>{
 
 var countdown = new Date(Date.now()+60*1000)
 
-const countDownTimer = (req,res,next)=>{
+const countDownLogic = ()=>{
     let deltaTime = countdown.getTime() - Date.now();
     deltaTime = (deltaTime/1000).toFixed(0)
-    if(deltaTime < 0) {
+    
+    return deltaTime;
+}
+
+const countDownTimer = (req,res,next)=>{
+    let deltaTime = countDownLogic()
+    if(deltaTime <= 0) {
         clearInterval(timer)
         deltaTime = 0;
-        return res.send({
-            data: deltaTime
+        return res.json({
+            "data": 0
         });
     }
-    return res.send({
-        data: deltaTime
+    return res.json({
+        "data": deltaTime
     });
 }
 

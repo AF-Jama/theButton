@@ -3,42 +3,42 @@
 const resetButton = document.querySelector('.btn-primary')
 const clicksContainer = document.getElementById('counter-container')
 
-function getFutureTime(delay) {  
-    const date = new Date();
+// function getFutureTime(delay) {  
+//     const date = new Date();
 
-    // date.setSeconds(date.getSeconds()+60,0)
+//     // date.setSeconds(date.getSeconds()+60,0)
 
-    return date.getSeconds() + delay;
-}
+//     return date.getSeconds() + delay;
+// }
 
-function getTimeNow(){
-    let date = new Date()
+// function getTimeNow(){
+//     let date = new Date()
 
-    return date.getSeconds();
-}
+//     return date.getSeconds();
+// }
 
 
 /*% (1000 * 60)/ 1000)*/
 
-let secondsNow = getTimeNow();
-let secondsInFuture = getFutureTime(60);
+// let secondsNow = getTimeNow();
+// let secondsInFuture = getFutureTime(60);
 
-let counter = secondsInFuture - secondsNow; 
+// let counter = secondsInFuture - secondsNow; 
 
 var numberElement = document.querySelector('#timer p')
 
-function incrementDown(){
-    // method decrements counter down and hence apply changes to dom element
-    var numberElement = document.querySelector('#timer p')
+// function incrementDown(){
+//     // method decrements counter down and hence apply changes to dom element
+//     var numberElement = document.querySelector('#timer p')
     
-    if(counter>=0){
-        numberElement.innerHTML = `${counter}`
-        counter--;
-        return;
-    }
-    numberElement.innerHTML = `SUCCESFULL`
+//     if(counter>=0){
+//         numberElement.innerHTML = `${counter}`
+//         counter--;
+//         return;
+//     }
+//     numberElement.innerHTML = `SUCCESFULL`
 
-}
+// }
 
 resetButton.addEventListener('click', async e=>{
     e.preventDefault()
@@ -63,7 +63,7 @@ resetButton.addEventListener('click', async e=>{
 
 async function getSecondsFromServer(){
     let seconds = await fetch('/timer',{
-        method:"POST"
+        method:"GET"
     })
     seconds = await seconds.json()
 

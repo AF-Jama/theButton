@@ -28,7 +28,7 @@ app.get('/',requestMiddleware,(req,res)=>{
 })
 
 // '/timer' post endpoint that decrements counter on each post request
-app.post('/timer',countDownTimer)
+app.get('/timer',countDownTimer)
 
 const reset = ()=>{
     // method to reset global variable 'counter' back to 60
