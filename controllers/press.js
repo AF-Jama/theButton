@@ -6,19 +6,24 @@ const pressController = async (req,res,next)=>{
     // const localIpAddress = req.ip; // gets local ip address from request object
 
     const {time} = req.body // destructures request payload
+    const t = await db.sequelize.transaction()
     console.log(`Time number is ${time}`)
     try {
         console.log("1a")
+        if(time === '0') throw new Error('Cannot click button as time has hit 0')
         const localIpAddress = await getUserIpAddresses(process.env.TOKEN)
         console.log(`Ip addresses is ${localIpAddress}`)
-        await db.ipTable.create({ipAddress:localIpAddress,time:time}) // commits
+        await db.ipTable.create({ipAddress:localIpAddress,time:time},{transaction:t}) // commits
+        await t.commit()
         console.log("2a")
         reset()
         console.log("3a")
         return res.render('index')
         
     } catch (error) {
+        await t.rollback()
         console.log("ERROR BLOCK TRIGGEREED")
+        console.log(error)
         return res.render('index')
     }
 
@@ -36,8 +41,8 @@ const countDownLogic = ()=>{
 const countDownTimer = (req,res,next)=>{
     let deltaTime = countDownLogic()
     if(deltaTime <= 0) {
-        clearInterval(timer)
         deltaTime = 0;
+        // clearInterval(timer)
         return res.json({
             "data": 0
         });
